@@ -6,17 +6,10 @@ import {
   faDatabase,
   faChartLine,
   faPiggyBank,
-  faHeadset,
-  faShieldHalved,
   faGlobe,
-  faClockRotateLeft,
-  faChartPie,
-  faUserGroup,
-  faGears,
   faRobot,
   faCode,
   faLock,
-  faServer,
   faCloud
 } from '@fortawesome/free-solid-svg-icons';
 

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faPlay, 
-  faPause, 
   faVolumeHigh,
   faCode,
   faBook,
@@ -13,11 +12,7 @@ import {
   faChartLine, 
   faPiggyBank,
   faHeadset,
-  faShieldHalved,
   faGlobe,
-  faClockRotateLeft,
-  faChartPie,
-  faUserGroup,
   faGears
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -564,7 +559,7 @@ const Documentation: React.FC = () => {
                         <p>Echtzeit-Übersetzung und Verarbeitung in 30+ Sprachen, inklusive regionaler Dialekte und Akzente</p>
                       </Feature>
                       <Feature>
-                        <FontAwesomeIcon icon={faUserGroup} className="icon" />
+                        <FontAwesomeIcon icon={faHeadset} className="icon" />
                         <h4>Sentiment Analysis</h4>
                         <p>Erkennung von Emotionen und Stimmungen mit 95% Genauigkeit für angepasste Gesprächsführung</p>
                       </Feature>

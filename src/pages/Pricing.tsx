@@ -7,7 +7,6 @@ import {
   faHeadset,
   faRobot,
   faChartLine,
-  faShieldHalved,
   faGlobe,
   faServer,
   faEnvelope,
