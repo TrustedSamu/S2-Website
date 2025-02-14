@@ -1,9 +1,13 @@
-import React, { useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import styled from 'styled-components';
-import { Engine } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
-import Particles from "@tsparticles/react";
+
+declare global {
+  interface Window {
+    particlesJS: any;
+    pJSDom: any[];
+  }
+}
 
 const ParticlesContainer = styled.div`
   position: fixed;
@@ -19,108 +23,117 @@ const ParticlesContainer = styled.div`
 
 const ParticlesBackground: React.FC = () => {
   const { theme } = useTheme();
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSlim(engine);
-  }, []);
+  useEffect(() => {
+    const initParticles = () => {
+      if (typeof window.particlesJS !== 'undefined' && containerRef.current) {
+        // Clean up previous instance if it exists
+        if (window.pJSDom && window.pJSDom.length > 0) {
+          window.pJSDom[0].pJS.fn.vendors.destroypJS();
+          window.pJSDom = [];
+        }
 
-  return (
-    <ParticlesContainer>
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          background: {
-            color: {
-              value: theme === 'dark' ? "#000000" : "#ffffff",
-            },
-          },
-          fpsLimit: 120,
+        window.particlesJS('particles-js', {
           particles: {
-            color: {
-              value: "#ff0000",
-            },
-            links: {
-              color: "#ff0000",
-              distance: 150,
-              enable: true,
-              opacity: theme === 'dark' ? 0.6 : 0.4,
-              width: 1,
-            },
-            move: {
-              enable: true,
-              speed: 2,
-              direction: "none",
-              random: true,
-              straight: false,
-              outModes: {
-                default: "out",
-              },
-              attract: {
-                enable: true,
-                rotateX: 600,
-                rotateY: 1200,
-              },
-            },
             number: {
+              value: 100,
               density: {
                 enable: true,
-                area: 1000,
-              },
-              value: 100,
+                value_area: 1000
+              }
             },
-            opacity: {
-              value: theme === 'dark' ? 0.8 : 0.6,
-              animation: {
-                enable: true,
-                speed: 1,
-                minimumValue: 0.3,
-                sync: false,
-              },
+            color: {
+              value: '#ff0000'
             },
             shape: {
-              type: "circle",
+              type: 'circle'
+            },
+            opacity: {
+              value: theme === 'light' ? 0.6 : 0.8,
+              random: false,
+              anim: {
+                enable: true,
+                speed: 1,
+                opacity_min: 0.3,
+                sync: false
+              }
             },
             size: {
               value: 3,
               random: true,
-              animation: {
+              anim: {
                 enable: true,
                 speed: 2,
-                minimumValue: 0.1,
-                sync: false,
-              },
+                size_min: 0.1,
+                sync: false
+              }
             },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: '#ff0000',
+              opacity: theme === 'light' ? 0.4 : 0.6,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: 'none',
+              random: true,
+              straight: false,
+              out_mode: 'out',
+              bounce: false,
+              attract: {
+                enable: true,
+                rotateX: 600,
+                rotateY: 1200
+              }
+            }
           },
-          detectRetina: true,
           interactivity: {
+            detect_on: 'canvas',
             events: {
-              onHover: {
+              onhover: {
                 enable: true,
-                mode: "grab",
+                mode: 'grab'
               },
-              onClick: {
+              onclick: {
                 enable: true,
-                mode: "push",
+                mode: 'push'
               },
-              resize: true,
+              resize: true
             },
             modes: {
               grab: {
                 distance: 140,
-                links: {
-                  opacity: 1,
-                },
+                line_linked: {
+                  opacity: 1
+                }
               },
               push: {
-                quantity: 4,
-              },
-            },
+                particles_nb: 4
+              }
+            }
           },
-        }}
-      />
-    </ParticlesContainer>
-  );
+          retina_detect: true
+        });
+      }
+    };
+
+    // Initialize particles with a slight delay to ensure DOM is ready
+    const timeoutId = setTimeout(initParticles, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (window.pJSDom && window.pJSDom.length > 0) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        window.pJSDom = [];
+      }
+    };
+  }, [theme]);
+
+  return <ParticlesContainer id="particles-js" ref={containerRef} />;
 };
 
 export default ParticlesBackground; 
