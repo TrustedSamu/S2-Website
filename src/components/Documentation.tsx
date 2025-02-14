@@ -13,7 +13,10 @@ import {
   faPiggyBank,
   faHeadset,
   faGlobe,
-  faGears
+  faGears,
+  faUserFriends,
+  faShield,
+  faClock
 } from '@fortawesome/free-solid-svg-icons';
 
 const DocumentationSection = styled.section`
@@ -325,66 +328,6 @@ const FeatureCategory = styled.div`
   }
 `;
 
-const Product = styled.div`
-  background: ${props => props.theme.colors.surface};
-  border-radius: 8px;
-  padding: 3rem;
-  box-shadow: 0 10px 30px ${props => props.theme.colors.shadow};
-  transition: transform 0.3s ease;
-  border: 1px solid ${props => props.theme.colors.border};
-  color: ${props => props.theme.colors.text};
-  margin-bottom: 4rem;
-
-  h3 {
-    font-size: 2rem;
-    color: inherit;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-  }
-
-  p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    text-align: center;
-    font-weight: 300;
-    opacity: 0.9;
-    color: inherit;
-  }
-`;
-
-const StatsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin: 3rem 0;
-`;
-
-const StatItem = styled.div`
-  text-align: center;
-  padding: 2rem;
-  background: ${props => props.theme.colors.surfaceAlt};
-  border-radius: 8px;
-  border: 1px solid ${props => props.theme.colors.border};
-
-  h4 {
-    font-size: 2.5rem;
-    color: var(--primary-red);
-    margin-bottom: 1rem;
-    font-weight: 600;
-  }
-
-  p {
-    font-size: 1rem;
-    color: ${props => props.theme.colors.text};
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    margin-bottom: 0;
-  }
-`;
-
 const FeatureGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -634,17 +577,17 @@ const Documentation: React.FC = () => {
                     <h4>Echtzeit-Analytics</h4>
                     <FeatureGrid>
                       <Feature>
-                        <FontAwesomeIcon icon={faChartPie} className="icon" />
+                        <FontAwesomeIcon icon={faChartLine} className="icon" />
                         <h4>Performance Metrics</h4>
                         <p>Echtzeit-KPIs wie Antwortzeiten, Lösungsraten, Kundenzufriedenheit und Kosteneffizienz</p>
                       </Feature>
                       <Feature>
-                        <FontAwesomeIcon icon={faClockRotateLeft} className="icon" />
+                        <FontAwesomeIcon icon={faClock} className="icon" />
                         <h4>Predictive Analytics</h4>
                         <p>ML-basierte Vorhersagen für Anrufvolumen, Ressourcenbedarf und Kundenverhalten</p>
                       </Feature>
                       <Feature>
-                        <FontAwesomeIcon icon={faShieldHalved} className="icon" />
+                        <FontAwesomeIcon icon={faShield} className="icon" />
                         <h4>Qualitätsmonitoring</h4>
                         <p>Automatische Qualitätsbewertung und Compliance-Überprüfung aller Interaktionen</p>
                       </Feature>
@@ -660,7 +603,7 @@ const Documentation: React.FC = () => {
                         <p>Identifikation von Kundentrends, häufigen Problemen und Optimierungspotentialen</p>
                       </Feature>
                       <Feature>
-                        <FontAwesomeIcon icon={faUserGroup} className="icon" />
+                        <FontAwesomeIcon icon={faUserFriends} className="icon" />
                         <h4>Kundenanalyse</h4>
                         <p>Detaillierte Einblicke in Kundenverhalten, Präferenzen und Interaktionsmuster</p>
                       </Feature>
