@@ -135,6 +135,27 @@ const ContactButton = styled(Link)`
   }
 `;
 
+const LoginButton = styled.a`
+  background: var(--primary-red);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  opacity: 0.9;
+
+  &:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
+  }
+`;
+
 const LogoLink = styled(Link)`
   text-decoration: none;
   height: 40px;
@@ -167,6 +188,9 @@ const Navbar: React.FC = () => {
           <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
         </ThemeToggle>
         <ContactButton to="/contact">Kontakt</ContactButton>
+        <LoginButton href="https://dashboard-gourmet-zxr1.vercel.app" target="_blank" rel="noopener noreferrer">
+          Login
+        </LoginButton>
       </RightSection>
     </NavbarContainer>
   );
