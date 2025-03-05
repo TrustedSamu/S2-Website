@@ -136,7 +136,7 @@ const ContactButton = styled(Link)`
 `;
 
 const LoginButton = styled.a`
-  background: var(--primary-red);
+  background: ${props => props.theme.theme === 'light' ? '#d10000' : 'var(--primary-red)'};
   color: white;
   border: none;
   padding: 0.5rem 1.5rem;
@@ -152,7 +152,7 @@ const LoginButton = styled.a`
   &:hover {
     opacity: 1;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
+    box-shadow: 0 4px 8px ${props => props.theme.theme === 'light' ? 'rgba(209, 0, 0, 0.3)' : 'rgba(255, 0, 0, 0.2)'};
   }
 `;
 
@@ -196,4 +196,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

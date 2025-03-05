@@ -11,9 +11,9 @@ interface ThemeContextType {
 }
 
 const defaultContext: ThemeContextType = {
-  theme: 'light',
+  theme: 'dark',
   toggleTheme: () => {},
-  colors: lightTheme
+  colors: darkTheme
 };
 
 const ThemeContext = createContext<ThemeContextType>(defaultContext);
@@ -21,7 +21,7 @@ const ThemeContext = createContext<ThemeContextType>(defaultContext);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<ThemeMode>(() => {
     const savedTheme = localStorage.getItem('theme');
-    return (savedTheme as ThemeMode) || 'light';
+    return (savedTheme as ThemeMode) || 'dark';
   });
 
   const colors = theme === 'light' ? lightTheme : darkTheme;
